@@ -1,0 +1,5 @@
+d /
+  d home
+    d user
+  d var
+  d tmp
