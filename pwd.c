@@ -48,18 +48,14 @@ int get_pwd(DirectoryTree *dTree) {
         current = current->parent;
     }
 
-    // 루트 경로인 "/" 출력
-    if (IsEmpty(&buff)) {
-        printf("/\n");
-    } else {
-        // 스택에 저장된 경로를 출력 (루트부터 현재까지)
-        char* name;
-        while ((name = pop(&buff)) != NULL) {
-            printf("/%s", name);
-            free(name);
-        }
-        printf("\n");
+    printf("/");
+
+    char* name;
+    while ((name = pop(&buff)) != NULL) {
+	    printf("%s/", name);
+	    free(name);
     }
 
+    printf("\n");
     return 0;
 }

@@ -40,7 +40,11 @@ TreeNode* load_tree_helper(FILE* file, int level) {
     node = malloc(sizeof(TreeNode));
     sscanf(line + current_level, "%c %s\n", &node->type, node->name);
     node->left = load_tree_helper(file, level + 1);
+    if (node->left != NULL)
+    	node->left->parent = node;
     node->right = load_tree_helper(file, level);
+    if (node->right != NULL)
+    	node->right->parent = node;
 
     return node;
 }
@@ -48,9 +52,9 @@ TreeNode* load_tree_helper(FILE* file, int level) {
 void load_tree_from_file(DirectoryTree* dTree, const char* filename) {
     FILE* file = fopen(filename, "r");
     if (!file) {
-        // ÆÄÀÏÀÌ Á¸ÀçÇÏÁö ¾ÊÀ¸¸é ºó Æ®¸® ÃÊ±âÈ­
-        perror("fopen"); // ¼öÁ¤µÈ ºÎºÐ: ÆÄÀÏÀÌ ¾øÀ» ¶§ÀÇ ¿À·ù ¸Þ½ÃÁö Ãâ·Â
-        TreeNode* root = malloc(sizeof(TreeNode)); //ºó Æ®¸® ÃÊ±âÈ­
+        // íŒŒì¼ì´ ì¡´ìž¬í•˜ì§€ ì•Šìœ¼ë©´ ë¹ˆ íŠ¸ë¦¬ ì´ˆê¸°í™”
+        perror("fopen"); // ìˆ˜ì •ëœ ë¶€ë¶„: íŒŒì¼ì´ ì—†ì„ ë•Œì˜ ì˜¤ë¥˜ ë©”ì‹œì§€ ì¶œë ¥
+        TreeNode* root = malloc(sizeof(TreeNode)); //ë¹ˆ íŠ¸ë¦¬ ì´ˆê¸°í™”
         strcpy(root->name, "/");
         root->type = 'd';
         root->left = NULL;
