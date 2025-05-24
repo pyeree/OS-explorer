@@ -1,11 +1,11 @@
 CC = gcc
 CFLAGS = -Wall -g
 TARGET = program
-SRCS = main.c cat.c cd.c clear.c diff.c ls.c pwd.c touch.c tree_io.c whereis.c
-# SRCS = main.c cat.c cd.c chmod.c clear.c diff.c ls.c mkdir.c mv.c pwd.c touch.c tree_io.c whereis.c # 모든 소스 파일
+SRCS = main.c cat.c cd.c clear.c diff.c ls.c pwd.c rmdir.c touch.c tree_io.c whereis.c
+# SRCS = main.c cat.c cd.c chmod.c clear.c diff.c ls.c mkdir.c mv.c pwd.c rmdir.c touch.c tree_io.c whereis.c # 모든 소스 파일
 OBJS = $(SRCS:.c=.o)
-DEPS = header.h tree_io.h cat.h cd.h clear.h diff.h ls.h pwd.h touch.h whereis.h
-# DEPS = header.h tree_io.h cat.h cd.h chmod.h clear.h diff.h ls.h mkdir.h mv.h pwd.h touch.h whereis.h # 모든 헤더 파일
+DEPS = header.h tree_io.h cat.h cd.h clear.h diff.h ls.h pwd.h rmdir.h touch.h whereis.h
+# DEPS = header.h tree_io.h cat.h cd.h chmod.h clear.h diff.h ls.h mkdir.h rmdir.h mv.h pwd.h touch.h whereis.h # 모든 헤더 파일
 
 #### Notice ####
 # main에 기능 구현 후 여기서 해당하는 object 파일 부분을 주석 해제해야 합니다!
@@ -15,7 +15,7 @@ DEPS = header.h tree_io.h cat.h cd.h clear.h diff.h ls.h pwd.h touch.h whereis.h
 $(TARGET): $(OBJS)
 	$(CC) $(CFLAGS) -o $@ $^
 
-main.o: main.c header.h tree_io.h cat.h cd.h clear.h diff.h ls.h pwd.h touch.h whereis.h
+main.o: main.c header.h tree_io.h cat.h cd.h clear.h diff.h ls.h pwd.h rmdir.h touch.h whereis.h
 # main.o: main.c header.h tree_io.h cat.h cd.h chmod.h clear.h diff.h ls.h mkdir.h mv.h pwd.h touch.h whereis.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
@@ -39,6 +39,9 @@ ls.o: ls.c ls.h header.h tree_io.h
 
 # mkdir.o: mkdir.c mkdir.h header.h tree_io.h
 # 	$(CC) $(CFLAGS) -c $< -o $@
+
+rmdir.o: rmdir.c rmdir.h header.h tree_io.h
+        $(CC) $(CFLAGS) -c $< -o $@
 
 # mv.o: mv.c mv.h header.h cd.h tree_io.h
 # 	$(CC) $(CFLAGS) -c $< -o $@
