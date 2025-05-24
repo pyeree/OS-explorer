@@ -1,5 +1,9 @@
 d /
   d home
     d user
+      d bin
+        a.txt
   d var
+    d bin
+      d test
   d tmp
