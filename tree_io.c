@@ -33,8 +33,7 @@ TreeNode* load_tree_helper(FILE* file, int level) {
     node->left  = load_tree_helper(file, level + 1);
     if (node->left)  node->left->parent = node;
     node->right = load_tree_helper(file, level);
-    if (node->right) node->right->parent = node->parent;
-
+    if (node->right) node->right->parent = node->parent; // 이전 코드 node->right->parent = node;
     return node;
 }
 

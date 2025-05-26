@@ -123,7 +123,21 @@ int main() {
             } else {
                 printf("diff: missing file operand\n");
             }
+        } else if (strcmp(cmd, "rmdir") == 0) {
+            char* arg1 = strtok(NULL, " ");
+            char* arg2 = strtok(NULL, " ");
 
+            if (arg1 == NULL) {
+              printf("rmdir: missing operand\n");
+            } else if (strcmp(arg1, "-p") == 0) {
+              if (arg2 == NULL) {
+                printf("rmdir: No such a path\n");
+              } else {
+                remove_dir_p_path(&dTree, arg2);
+              }
+            } else {
+              remove_dir_path(&dTree, arg1);
+            }
         } else if (strcmp(cmd, "touch") == 0) {
             char* arg = strtok(NULL, " ");
             if (arg) {

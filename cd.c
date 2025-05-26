@@ -6,6 +6,8 @@
 void cd(DirectoryTree *dTree, const char *path) {
     if (strcmp(path, "/") == 0) {
         dTree->current = dTree->root;
+        // strcpy(dTree->current_path, "team4@: /");
+        // return;
     }
     else if (strcmp(path, "..") == 0) {
         if (dTree->current->parent)
